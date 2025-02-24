@@ -16,7 +16,7 @@ const App: React.FC = () => {
       formData.append('repo', repo);
 
       // Adjust the URL to your Flask backend endpoint if necessary.
-      const response = await fetch(`http://${BACKEND_SERVER}/generate-readme`, {
+      const response = await fetch(`https://${BACKEND_SERVER}/generate-readme`, {
         method: 'POST',
         body: formData,
       });
