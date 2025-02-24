@@ -4,12 +4,15 @@ import shutil
 from flask import Flask, request, jsonify
 import requests
 from dotenv import load_dotenv
+from flask_cors import CORS,cross_origin
 
 # test comment
 # Load environment variables from .env file
 load_dotenv()
 
 app = Flask(__name__)
+CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 # Set your Anthropic API key from an environment variable
 anthropic_api_key = os.getenv("ANTHROPIC_API_KEY", "")
@@ -162,7 +165,13 @@ def summarize_repo(repo_dir):
         return f"Error in summarization: {e}"
 
 @app.route('/generate-readme', methods=['POST'])
+@cross_origin()
 def generate_readme():
+    
+    
+    # Temp
+    #return jsonify({"Success": "Backend Hit!"}), 200
+
     # Accept form data (or JSON) for GitHub profile and repository
     if request.form:
         profile = request.form.get('profile')
@@ -195,4 +204,4 @@ def generate_readme():
 
 if __name__ == "__main__":
     # The container listens on port 5173
-    app.run(host="0.0.0.0", port=5173)
+    app.run(host="0.0.0.0", port=8000, debug = True)
