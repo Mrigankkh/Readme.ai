@@ -5,7 +5,7 @@ import MarkdownDisplay from './components/MarkdownDisplay';
 
 const App: React.FC = () => {
   
-  const BACKEND_SERVER = import.meta.env.BACKEND_URL || 'localhost:5000'; // Adjust this to your backend server address
+  const BACKEND_SERVER = import.meta.env.BACKEND_URL || 'http://readmemvpv1-env.eba-qnbz35re.us-east-1.elasticbeanstalk.com'; // Adjust this to your backend server address
 
   const [markdownResult, setMarkdownResult] = useState<string>('');
 
