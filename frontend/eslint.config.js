@@ -18,7 +18,9 @@ export default tseslint.config(
       'react-refresh': reactRefresh,
     },
     rules: {
+      
       ...reactHooks.configs.recommended.rules,
+      "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
