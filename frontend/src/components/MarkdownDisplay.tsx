@@ -26,6 +26,7 @@ const MarkdownDisplay: React.FC<MarkdownDisplayProps> = ({ markdown }) => {
   const [tabValue, setTabValue] = useState(0);
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+    event = event;
     setTabValue(newValue);
   };
 
