@@ -5,7 +5,6 @@ import {
   ThemeProvider,
   Typography,
   Box,
-  Toolbar,
   createTheme,
   Grow
 } from '@mui/material';
