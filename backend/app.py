@@ -180,12 +180,7 @@ def generate_readme():
             return jsonify({"error": "Both profile and repository are required."}), 400
         github_url = f"https://github.com/{profile}/{repo}.git"
     else:
-        data = request.get_json()
-        if not data:
-            return jsonify({"error": "No input provided."}), 400
-        github_url = data.get('github_url')
-        if not github_url:
-            return jsonify({"error": "GitHub URL is required."}), 400
+        return jsonify({"error": "Form Data is empty!"}), 400
 
     # Create a temporary directory to clone the repository
     clone_dir = "/tmp/repo-clone"
