@@ -1,5 +1,6 @@
 import os
 import json
+import shutil
 
 IGNORE_LIST_PATH = os.path.join(os.path.dirname(__file__), 'config', 'ignore_file_list.json')
 try:
@@ -48,3 +49,19 @@ def get_file_size(file_path):
         print(f"Error getting file size for {file_path}: {e}")
         return 0
     
+
+def remove_repo(repo_dir):
+    """
+    Remove the temporary repository clone directory.
+    
+    Args:
+        repo_dir (str): Path to the cloned repository directory.
+    """
+    if os.path.exists(repo_dir):
+        try:
+            shutil.rmtree(repo_dir)
+            print(f"Cleaned up repository at {repo_dir}.")
+        except Exception as e:
+            print(f"Error cleaning up repository at {repo_dir}: {e}")
+    else:
+        print(f"Repository directory {repo_dir} does not exist.")
