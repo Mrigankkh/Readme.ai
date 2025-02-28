@@ -1,6 +1,7 @@
 import os
 import subprocess
 import shutil
+from utils import remove_repo
 from readme_generator import summarize_repo
 from flask import Flask, request, jsonify
 from dotenv import load_dotenv
@@ -111,7 +112,7 @@ def generate_readme():
 
     # Generate the README summary from the repository
     summary = summarize_repo(clone_dir)
-    
+    remove_repo(clone_dir)
     return jsonify({"readme": summary})
 
 if __name__ == "__main__":
