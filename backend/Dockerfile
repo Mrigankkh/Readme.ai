@@ -17,7 +17,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . /app/
 
 # 6. Expose the port that Flask will run on
-EXPOSE 5000
+EXPOSE 8000
 
 # 7. Set environment variable to force stdout logging (optional)
 ENV PYTHONUNBUFFERED 1
