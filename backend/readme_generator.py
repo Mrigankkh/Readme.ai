@@ -175,12 +175,12 @@ def summarize_repo(repo_dir):
     print(f"Final combined text token count: {token_count}")
 
     prompt = (
-        "\n\nHuman: Based on the following repository contents, generate a clear, concise README that explains the purpose, structure, and usage of the repository.\n\n"
+        "\n\nHuman: Based on the following repository contents, generate a clear, concise README that explains the purpose, structure, and usage of the repository. Do not give any additional comments. \n\n"
         f"{combined_text}\n\nAssistant:"
     )
     payload = {
         "model": "claude-3-5-sonnet-20241022",
-        "system": "You are a helpful assistant that summarizes code repositories.",
+        "system": "You are a helpful assistant that summarizes code repositories and generates README markdown files.",
         "messages": [{"role": "user", "content": prompt}],
         "max_tokens": 1024,
         "temperature": 0.7
