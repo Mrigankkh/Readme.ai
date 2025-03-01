@@ -59,7 +59,7 @@ def clean_llm_response(response):
     Takes the LLM's raw response and extracts the ranked file list.
     Expected format: "1. FileName (Directory): Size"
     """
-    line_pattern = re.compile(r'^\d+\.\s+.+\(.+\):\s*\d+(\.\d+)?\s*KB')
+    line_pattern = re.compile(r'^\d+\.\s+(.+)\((.*?)\):\s*([\d\.]+)\s*[Kk][Bb]')
     lines = response.strip().split("\n")
     valid_lines = [line.strip() for line in lines if line_pattern.search(line.strip())]
     return "\n".join(valid_lines) if valid_lines else None
@@ -71,7 +71,7 @@ def get_file_rankings(repo_metadata_json, max_retries=2):
     prompt = (
         "Here is a list of files in the repository with their directory location and size. "
         "Please rank these files based on their relevance for generating a README for this project. "
-        "Do not include any explanations. Return rankings in the format: '1. FileName (Directory): Size'.\n\n"
+        "Do not include any explanations. Return rankings in the format: '1. FileName (Directory): Size KB'.\n\n"
         "Repo Metadata:\n"
         f"{repo_metadata_json}\n\n"
         "Rank the files from most relevant to least relevant."
@@ -84,6 +84,8 @@ def get_file_rankings(repo_metadata_json, max_retries=2):
         "temperature": 0.2
     }
     retries = 0
+    #temp
+    max_retries = 1
     while retries < max_retries:
         try:
             response = requests.post("https://api.anthropic.com/v1/messages", json=payload, headers=anthropic_headers)
@@ -109,7 +111,7 @@ def parse_ranked_lines_to_paths(ranked_lines, repo_dir):
     Converts a ranked line like "1. main.py (src): 4.2 KB" into a file path.
     """
     results = []
-    line_pattern = re.compile(r'^\d+\.\s+(.+)\((.*?)\):\s*([\d\.]+)\s*KB')
+    line_pattern = re.compile(r'^\d+\.\s+(.+)\((.*?)\):\s*([\d\.]+)\s*[Kk][Bb]')
     for line in ranked_lines:
         match = line_pattern.search(line)
         if match:
@@ -146,6 +148,7 @@ def summarize_repo(repo_dir):
     ranking_response = get_file_rankings(repo_metadata_json)
     if ranking_response.startswith("Error:"):
         return ranking_response
+    print("LLM Ranking Response:", ranking_response)
     cleaned_ranking = clean_llm_response(ranking_response)
     if not cleaned_ranking:
         return "Error: No valid ranking found."
@@ -154,7 +157,8 @@ def summarize_repo(repo_dir):
     if total_files == 0:
         return "No files were ranked."
     # Keep top 80%
-    cutoff = int(0.8 * total_files)
+    cutoff_percent = 0.8 if total_files > 10 else 1
+    cutoff = int(cutoff_percent * total_files)
     top_80_lines = ranking_lines[:cutoff]
     file_paths_to_summarize = parse_ranked_lines_to_paths(top_80_lines, repo_dir)
     if len(file_paths_to_summarize) == 0:
@@ -178,7 +182,7 @@ def summarize_repo(repo_dir):
         "model": "claude-3-5-sonnet-20241022",
         "system": "You are a helpful assistant that summarizes code repositories.",
         "messages": [{"role": "user", "content": prompt}],
-        "max_tokens": 500,
+        "max_tokens": 1024,
         "temperature": 0.7
     }
     print('Combined text length:', len(combined_text))
@@ -226,6 +230,7 @@ def limit_combined_text(file_summaries, anthropic_client, model, token_limit=500
             f"{combined_text}\n\nAssistant:"
         )
         token_count = get_token_count(prompt, anthropic_client, model)
+        print('TOken count atm is:', token_count)
         if token_count <= token_limit or not file_summaries:
             break
         # Remove the last file summary (lowest ranked)
