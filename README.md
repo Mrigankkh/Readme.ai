@@ -17,6 +17,16 @@ This tool clones GitHub repositories and uses the Anthropic Claude API to analyz
 - Docker containerization of backend for easy deployment
 - Anthropic Claude API integration for AI-powered Readme generation
 
+## Screenshots
+Home Page
+<img width="1709" alt="image" src="https://github.com/user-attachments/assets/89ff95e8-05a2-4205-b4f4-2aa3cf77e8cb" />
+
+Generated Markdown
+<img width="1709" alt="image" src="https://github.com/user-attachments/assets/4e8d3c32-f34d-4d33-9eb5-1a5308caa418" />
+
+Preview of generated Markdown
+<img width="1709" alt="image" src="https://github.com/user-attachments/assets/8d263d2b-8864-4a85-b822-204c728e33ea" />
+
 ## Prerequisites
 
 - Docker (Optional)
@@ -85,15 +95,6 @@ The project is split into 2 directories, frontend and backend
 ### Frontend
 Frontend is a simple React + Vite App.
 
-##Screenshots
-Home Page
-<img width="1709" alt="image" src="https://github.com/user-attachments/assets/89ff95e8-05a2-4205-b4f4-2aa3cf77e8cb" />
-
-Generated Markdown
-<img width="1709" alt="image" src="https://github.com/user-attachments/assets/4e8d3c32-f34d-4d33-9eb5-1a5308caa418" />
-
-Preview of generated Markdown
-<img width="1709" alt="image" src="https://github.com/user-attachments/assets/8d263d2b-8864-4a85-b822-204c728e33ea" />
 
 
 
