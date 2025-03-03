@@ -1,9 +1,9 @@
 
 # GitHub README Generator
 
-A web application that automatically generates README files for GitHub repositories using AI-powered analysis. 
+An AWS hosted web application that automatically generates README files for GitHub repositories using AI-powered analysis. 
 
-Fun fact: This readme was made by this app!
+![Readme ai_gifasset-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/4ea3cf24-b7b1-491d-8a25-0b6a04e9df94)
 
 ## Overview
 
