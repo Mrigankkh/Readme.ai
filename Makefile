@@ -1,4 +1,5 @@
 run-local:
-	cd backend && make start-backend
-start-frontend:
+	$(MAKE) -C backend start-backend &
+	$(MAKE) -C frontend start-frontend &
+	wait
 	
