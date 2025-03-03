@@ -1,5 +1,11 @@
 
 # GitHub README Generator
+![Static Badge](https://img.shields.io/badge/LLM-gold)
+![Static Badge](https://img.shields.io/badge/Flask-red)
+![Static Badge](https://img.shields.io/badge/JavaScript-purple)
+![Static Badge](https://img.shields.io/badge/Docker-blue)
+![Static Badge](https://img.shields.io/badge/AWS-silver)
+
 
 An AWS hosted web application that automatically generates README files for GitHub repositories using AI-powered analysis. 
 
