@@ -12,7 +12,8 @@ import ReadmeForm from './components/ReadmeForm';
 import MarkdownDisplay from './components/MarkdownDisplay';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
@@ -41,19 +42,22 @@ const App: React.FC = () => {
         body: formData
       });
 
-      if (!response.ok) throw new Error(`Server error: ${response.statusText}`);
+     
 
       const data = await response.json();
+      if (!response.ok) throw new Error(data.error || response.statusText);
       setMarkdownResult(data.readme);
     } catch (error: any) {
       console.error('Error generating README:', error);
-      alert(`Error: ${error.message}`);
+      toast.error(`Error: ${error.message}`);
     }
   };
 
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
+      <ToastContainer
+      position='top-center'/>
       {/* Fixed Background */}
       <Box
         sx={{
