@@ -175,9 +175,18 @@ def summarize_repo(repo_dir):
     print(f"Final combined text token count: {token_count}")
 
     prompt = (
-        "\n\nHuman: Based on the following repository contents, generate a clear, concise README that explains the purpose, structure, and usage of the repository. Do not give any additional comments. \n\n"
-        f"{combined_text}\n\nAssistant:"
+        "\n\nHuman: Analyze the repository content provided below and generate a comprehensive README. The README must include:\n"
+        "- A project title at the top.\n"
+        "- Directly below the title, display 4–5 tech stack badges using the markdown format: ![Static Badge](https://img.shields.io/badge/[name]-[color]).\n"
+        "- A section describing the project's purpose or 'About' information.\n"
+        "- A detailed explanation of the repository structure.\n"
+        "- (Optional)A section on explaination of the different modules or components of the app and some high level implementation details.\n"
+        "- A section listing the project's features.\n"
+        "Output only the README content with no extra commentary.\n\n"
+        f"{combined_text}\n\n"
+        "Assistant:"
     )
+
     payload = {
         "model": "claude-3-5-sonnet-20241022",
         "system": "You are a helpful assistant that summarizes code repositories and generates README markdown files.",
