@@ -108,7 +108,7 @@ def generate_readme():
         # Clone only the main branch
         subprocess.run(["git", "clone", "--depth", "1", "--branch", "main", github_url, clone_dir], check=True)
     except subprocess.CalledProcessError as e:
-        return jsonify({"error": f"Failed to clone repository: {str(e)}"}), 500
+        return jsonify({"error": f"Failed to clone repository! Recheck the Username/Repo name. Repo names are case sensetive!"}), 500
 
     # Generate the README summary from the repository
     summary = summarize_repo(clone_dir)
