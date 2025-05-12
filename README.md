@@ -109,4 +109,4 @@ Frontend is a simple React + Vite App.
 - More error handling
 - Code summarization for reduction of input tokens passed to LLM.
 - Additional controls for markdown eg: Verbose control, Sections etc.
-- UI Enhancements
+- UI Enhancements.
