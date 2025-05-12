@@ -37,7 +37,5 @@ jobs:
                 --region   ${{ secrets.AWS_REGION }} \
                 --verbose
 
-      
-    - name: Deploy to EB
-      run: |
+
         eb deploy ${{ secrets.EB_ENV_NAME }}
