@@ -34,6 +34,9 @@ jobs:
     - name: Create a ZIP file for backend
       run: |
         zip -r backend.zip backend/* backend/.[!.]* backend/.??*
+        
+    - name: List contents of backend.zip
+      run: unzip -l backend.zip
 
 
     - name: Initialize EB
