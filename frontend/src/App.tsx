@@ -27,7 +27,7 @@ const darkTheme = createTheme({
 });
 
 const App: React.FC = () => {
-  const BACKEND_SERVER = import.meta.env.BACKEND_URL || 'readme.mrigank.me';
+  const BACKEND_SERVER = import.meta.env.BACKEND_URL || 'readmeai.mrigank.me';
   const [markdownResult, setMarkdownResult] = useState<string>('');
 
   const handleGenerate = async (profile: string, repo: string) => {
