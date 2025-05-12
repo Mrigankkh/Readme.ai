@@ -1,6 +1,0 @@
-/* Remove most custom CSS as we'll handle styling through MUI */
-body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-}
