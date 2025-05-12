@@ -31,13 +31,13 @@ jobs:
     - name: Init & deploy backend
       working-directory: backend
       run: |
-        # Initialise every run (safe if it already exists)
+       
         eb init ${{ secrets.EB_APP_NAME }} \
                 --platform docker \
                 --region   ${{ secrets.AWS_REGION }} \
                 --verbose
 
-        # Deploy the current commit; label helps trace versions
-        eb deploy  ${{ secrets.EB_ENV_NAME }} \
-                   --staged \
-                   --label "gh-${{ github.run_number }}-${{ github.sha::0:7 }}"
+      
+    - name: Deploy to EB
+      run: |
+        eb deploy ${{ secrets.EB_ENV_NAME }}
