@@ -34,7 +34,7 @@ jobs:
     - name: Create a ZIP file for backend
       run: |
         cd backend
-        zip -r ../backend.zip * .[^.]*  # Create a zip file of the backend directory
+        zip -r ../backend.zip .
 
     - name: Initialize EB
       run: |
