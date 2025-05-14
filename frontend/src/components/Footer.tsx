@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
             GitHub
           </Link>{' '}
           |{' '}
-          <Link href="https:/mrigank.me" target="_blank" rel="noopener" sx={{ color: 'inherit', textDecoration: 'none' }}>
+          <Link href="https://mrigank.me" target="_blank" rel="noopener" sx={{ color: 'inherit', textDecoration: 'none' }}>
             Personal Website
           </Link>
         </Typography>
